@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Elements/Button/Button";
+import { Link } from "react-router-dom";
 
 function CardProduct(props) {
   return (
@@ -11,9 +12,9 @@ function CardProduct(props) {
 
 const Header = (props) => {
   return (
-    <a href="#">
+    <Link to={`/product/${props.id}`}>
       <img src={props.image} alt="" className="p-8 rounded-t-lg h-60 w-full object-cover" />
-    </a>
+    </Link>
   );
 };
 
