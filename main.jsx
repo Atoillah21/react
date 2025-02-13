@@ -7,38 +7,50 @@ import RegisterPage from "./src/pages/Register.jsx";
 import ProductsPage from "./src/pages/products.jsx";
 import ProfilePage from "./src/pages/profile.jsx";
 import DetailProductPage from "./src/pages/dteailproduct.jsx";
+import { Provider } from "react-redux";
+import store from "./src/redux/store.js";
+import DarkModeContextProvider from "./src/context/DarkMode.jsx";
+import { TotalPriceProvider } from "./src/context/TotalPriceContext.jsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <div>
-      Silahkan <a href="/login">Login </a>
-    </div>,
+    path: "/",
+    element: (
+      <div>
+        Silahkan <a href="/login">Login </a>
+      </div>
+    ),
   },
   {
-    path: '/login',
-    element: <LoginPage/>,
+    path: "/login",
+    element: <LoginPage />,
   },
   {
-    path: '/register',
-    element: <RegisterPage/>,
+    path: "/register",
+    element: <RegisterPage />,
   },
   {
-    path: '/products',
-    element: <ProductsPage/>,
+    path: "/products",
+    element: <ProductsPage />,
   },
   {
-    path: '/profile',
-    element: <ProfilePage/>,
+    path: "/profile",
+    element: <ProfilePage />,
   },
   {
-    path: '/product/:id',
-    element: <DetailProductPage/>,
+    path: "/product/:id",
+    element: <DetailProductPage />,
   },
-])
+]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+      <DarkModeContextProvider>
+        <TotalPriceProvider>
+          <RouterProvider router={router} />
+        </TotalPriceProvider>
+      </DarkModeContextProvider>
+    </Provider>
   </StrictMode>
 );
